@@ -1,36 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaChevronDown,
   FaInbox,
   FaRegCalendar,
   FaRegCalendarAlt
 } from "react-icons/fa";
+import { Projects } from "../Projects";
+import { useSelectedProjectValue } from "../../context";
+import { AddProject } from "../AddProject";
 
-export const Sidebar = () => (
-  <div className="sidebar" data-testid="sidebar">
-    <ul className="sidebar__generic">
-      <li>
-        <span><FaInbox /></span>
-        <span>Inbox</span>
-      </li>
-      <li>
-        <span><FaRegCalendar /></span>
-        <span>Today</span>
-      </li>
-      <li>
-        <span><FaRegCalendarAlt /></span>
-        <span>Next 7 Days</span>
-      </li>
-    </ul>
+export const Sidebar = () => {
+  const { setSelectedProject } = useSelectedProjectValue();
+  const [active, setActive] = useState("inbox");
+  const [showProjects, setShowProjects] = useState(true);
 
-    <div className="sidbar__middle">
-      <span><FaChevronDown /></span>
-      <h2>Projects</h2>
+  return (
+    <div className="sidebar" data-testid="sidebar">
+      <ul className="sidebar__generic">
+        <li 
+          data-testid="inbox" 
+          className={active === "inbox" ? "inbox active" : "inbox"} 
+        >
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={() => {
+              setActive("inbox");
+              setSelectedProject("INBOX");
+            }}
+            onKeyDown={() => {
+              setActive("inbox");
+              setSelectedProject("INBOX");
+            }}
+          >
+            <span><FaInbox /></span>
+            <span>Inbox</span>
+          </div>
+        </li>
+        <li 
+          data-testid="today" 
+          className={active === "today" ? "today active" : "today"} 
+        >
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              setActive("today");
+              setSelectedProject("TODAY");
+            }}
+            onKeyDown={() => {
+              setActive("today");
+              setSelectedProject("TODAY");
+            }}
+          >
+            <span><FaRegCalendar /></span>
+            <span>Today</span>
+          </div>
+        </li>
+        <li 
+          data-testid="next_7" 
+          className={active === "next_7" ? "next_7 active" : "next_7"} 
+        >
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => {
+              setActive("next_7");
+              setSelectedProject("NEXT_7");
+            }}
+            onKeyDown={() => {
+              setActive("next_7");
+              setSelectedProject("NEXT_7");
+            }}
+          >
+            <span><FaRegCalendarAlt /></span>
+            <span>Next 7 Days</span>
+          </div>
+        </li>
+      </ul>
+
+      <div 
+        className="sidebar__middle" 
+        onClick={() => setShowProjects(!showProjects)}
+        onKeyDown={() => setShowProjects(!showProjects)}
+        role="button"
+        tabIndex={0}
+      >
+        <span>
+          <FaChevronDown className={!showProjects ? "hidden-projects" : undefined} />
+        </span>
+        <h2>Projects</h2>
+      </div>
+
+  <ul className="sidebar__projects">{ showProjects && <Projects /> }</ul>
+
+    { showProjects && <AddProject /> }
     </div>
-
-    <ul className="sidebar__projects">
-      Projects will be here !
-    </ul>
-    Add Project Component Here !!
-  </div>
-);
+  );
+};
