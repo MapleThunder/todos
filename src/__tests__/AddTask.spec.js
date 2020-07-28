@@ -219,6 +219,8 @@ describe("<AddTask />", () => {
       
       fireEvent.click(queryByTestId("task-date-today"));
       expect(queryByTestId("task-date-overlay")).toBeFalsy();
+
+      fireEvent.click(queryByTestId("add-task"));
     });
 
     /* KeyDown
@@ -371,5 +373,29 @@ describe("<AddTask />", () => {
       fireEvent.keyDown(queryByTestId("add-task"));
     });
 
+    it("renders <AddTask /> and adds a task with a task date on keyDown", () => {
+      useSelectedProjectValue.mockImplementation(() => ({
+        selectedProject: "1"
+      }));
+
+      const { queryByTestId } = render(<AddTask showMain />);
+
+      fireEvent.keyDown(queryByTestId("show-main-action"));
+      expect(queryByTestId("add-task-content")).toBeTruthy();
+      expect(queryByTestId("add-task-main")).toBeTruthy();
+
+      fireEvent.change(queryByTestId("add-task-content"), {
+        target: { value: "Testing task value." }
+      });
+      expect(queryByTestId("add-task-content").value).toBe("Testing task value.");
+
+      fireEvent.keyDown(queryByTestId("show-task-date-overlay"));
+      expect(queryByTestId("task-date-overlay")).toBeTruthy();
+      
+      fireEvent.keyDown(queryByTestId("task-date-today"));
+      expect(queryByTestId("task-date-overlay")).toBeFalsy();
+
+      fireEvent.keyDown(queryByTestId("add-task"));
+    });
   });
 });

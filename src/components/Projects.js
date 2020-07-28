@@ -12,7 +12,7 @@ export const Projects = ({activeValue = true}) => {
       <li
         key={project.projectId}
         data-doc-id={project.docId}
-        data-testid="project-action"
+        data-testid="project-action-parent"
         className={
           active === project.projectId
             ? "active sidebar__project"
@@ -20,6 +20,7 @@ export const Projects = ({activeValue = true}) => {
         }  
       >
         <div
+          data-testid="project-action"
           role="button"
           aria-label={`Select ${project.name} as the task project`}
           tabIndex={0}
