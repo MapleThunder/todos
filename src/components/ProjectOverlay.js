@@ -21,6 +21,7 @@ export const ProjectOverlay = ({
             >
               <div
                 role="button"
+                aria-label="Select the task project"
                 tabIndex={0}
                 onClick={() => {
                   setProject(project.projectId);

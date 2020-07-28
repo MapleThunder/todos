@@ -3,7 +3,6 @@ import { FaRegListAlt, FaRegCalendarAlt } from "react-icons/fa";
 import moment from "moment";
 import { firebase } from "../firebase";
 import { useSelectedProjectValue } from "../context";
-import { collatedTasks } from "../constants";
 import { ProjectOverlay } from "./ProjectOverlay";
 import { TaskDate } from "./TaskDate";
 
@@ -68,6 +67,7 @@ export const AddTask = ({
           onClick={() => setShowMain(!showMain)}
           onKeyDown={() => setShowMain(!showMain)}
           role="button"
+          aria-label="Add task"
           tabIndex={0}
         >
           <span className="add-task__plus">+</span>
@@ -95,6 +95,7 @@ export const AddTask = ({
                     setShowQuickAddTask(false);
                   }}
                   role="button"
+                  aria-label="Cancel adding task"
                   tabIndex={0}
                 >
                   X
@@ -113,6 +114,7 @@ export const AddTask = ({
             setShowTaskDate={setShowTaskDate}
           />
           <input 
+            aria-label="Enter your task"
             className="add-task__content"
             data-testid="add-task-content"
             type="text"
@@ -141,6 +143,7 @@ export const AddTask = ({
                 setShowProjectOverlay(false);
               }}
               role="button"
+              aria-label="Cancel adding task"
               tabIndex={0}
             >
               Cancel
@@ -152,6 +155,7 @@ export const AddTask = ({
             onClick={() => setShowProjectOverlay(!showProjectOverlay)}
             onKeyDown={() => setShowProjectOverlay(!showProjectOverlay)}
             role="button"
+            aria-label="Select the project for the task"
             tabIndex={0}
           >
             <FaRegListAlt />
@@ -162,6 +166,7 @@ export const AddTask = ({
             onClick={() => setShowTaskDate(!showTaskDate)}
             onKeyDown={() => setShowTaskDate(!showTaskDate)}
             role="button"
+            aria-label="Select date for the task"
             tabIndex={0}
           >
             <FaRegCalendarAlt />

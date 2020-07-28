@@ -8,10 +8,12 @@ export const TaskDate = ({setTaskDate, showTaskDate, setShowTaskDate}) => {
     showTaskDate && (
       <div className="task-date" data-testid="task-date-overlay">
         <ul className="task-date__list">
-          <li data-testid="task-date-overlay">
+          <li>
             <div
+              data-testid="task-date-today"
               role="button"
               tabIndex={0}
+              aria-label="Select today for the task date"
               onClick={() => {
                 setShowTaskDate(false);
                 setTaskDate(moment().format("DD/MM/YYYY"));
@@ -27,10 +29,12 @@ export const TaskDate = ({setTaskDate, showTaskDate, setShowTaskDate}) => {
               <span>Today</span>
             </div>
           </li>
-          <li data-testid="task-date-tomorrow">
+          <li>
             <div
+              data-testid="task-date-tomorrow"
               role="button"
               tabIndex={0}
+              aria-label="Select tomorrow for the task date"
               onClick={() => {
                 setShowTaskDate(false);
                 setTaskDate(moment().add(1, "day").format("DD/MM/YYYY"));
@@ -46,10 +50,12 @@ export const TaskDate = ({setTaskDate, showTaskDate, setShowTaskDate}) => {
               <span>Tomorrow</span>
             </div>
           </li>
-          <li data-testid="task-date-next-week">
+          <li>
             <div
+              data-testid="task-date-next-week"
               role="button"
               tabIndex={0}
+              aria-label="Select in a week for the task date"
               onClick={() => {
                 setShowTaskDate(false);
                 setTaskDate(moment().add(7, "days").format("DD/MM/YYYY"));
