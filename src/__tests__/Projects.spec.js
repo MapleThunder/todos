@@ -46,6 +46,14 @@ describe("<Projects />", () => {
       fireEvent.keyDown(queryByTestId("project-action"));
       expect(queryByTestId("project-action-parent").classList.contains("active")).toBeTruthy();
     });
+    
+    it("renders <Projects /> with no active project using keyDown", () => {
+      const { queryByTestId } = render(<Projects />);
+      expect(queryByTestId("project-action")).toBeTruthy();
+
+      fireEvent.keyDown(queryByTestId("project-action"));
+      expect(queryByTestId("project-action-parent").classList.contains("sidebar__project")).toBeTruthy();
+    });
   });
 
   describe("Failure", () => {
