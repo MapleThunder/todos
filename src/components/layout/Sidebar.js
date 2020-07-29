@@ -22,6 +22,7 @@ export const Sidebar = () => {
           className={active === "inbox" ? "inbox active" : "inbox"} 
         >
           <div
+            data-testid="inbox-action" 
             aria-label="Show inbox tasks"
             tabIndex={0}
             role="button"
@@ -43,6 +44,7 @@ export const Sidebar = () => {
           className={active === "today" ? "today active" : "today"} 
         >
           <div
+            data-testid="today-action" 
             aria-label="Show todays tasks"
             role="button"
             tabIndex={0}
@@ -64,6 +66,7 @@ export const Sidebar = () => {
           className={active === "next_7" ? "next_7 active" : "next_7"} 
         >
           <div
+            data-testid="next_7-action" 
             aria-label="Show tasks for the next 7 days"
             role="button"
             tabIndex={0}
@@ -83,6 +86,7 @@ export const Sidebar = () => {
       </ul>
 
       <div 
+        data-testid="show-hide-projects"
         aria-label="Show/hide projects"
         className="sidebar__middle" 
         onClick={() => setShowProjects(!showProjects)}
@@ -91,12 +95,15 @@ export const Sidebar = () => {
         tabIndex={0}
       >
         <span>
-          <FaChevronDown className={!showProjects ? "hidden-projects" : undefined} />
+          <FaChevronDown 
+            data-testid="projects-chevron"
+            className={!showProjects ? "hidden-projects" : undefined} 
+          />
         </span>
         <h2>Projects</h2>
       </div>
 
-  <ul className="sidebar__projects">{ showProjects && <Projects /> }</ul>
+      <ul className="sidebar__projects">{ showProjects && <Projects /> }</ul>
 
     { showProjects && <AddProject /> }
     </div>
